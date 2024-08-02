@@ -403,6 +403,13 @@ public class RoomManager implements Listener {
     @EventHandler
     public void onGameStartEvent(GameRoomStartEvent event){
         GameRoom room = event.getRoom();
+        // change to sunny day
+        ArrayList<PlayerInfo> livePlayers = room.getLivePlayers();
+        if (!livePlayers.isEmpty()){
+            PlayerInfo playerInfo = livePlayers.get(0);
+            playerInfo.getPlayer().getLevel().setTime(Level.TIME_DAY);
+            playerInfo.getPlayer().getLevel().setThundering(false);
+        }
         String line = "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
         for(String s: room.getRoomConfig().gameStartMessage){
             room.sendTipMessage(FunctionManager.getCentontString(s,line.length()));

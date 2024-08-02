@@ -582,7 +582,10 @@ public class GameRoom {
 
 
         type = GameType.END;
-        worldInfo.setClose(true);
+        //maybe npe
+        if (worldInfo != null){
+            worldInfo.setClose(true);
+        }
         loadTime = 5;
 
         TotalManager.getRecordManager().stopRecord(this);
@@ -614,7 +617,6 @@ public class GameRoom {
                 }
             }
             sendTitle("&c游戏开始");
-
             loadTime = getRoomConfig().time;
             worldInfo = new WorldInfo(this,getRoomConfig().worldInfo);
             GameRoomStartEvent event = new GameRoomStartEvent(this,TotalManager.getPlugin());
